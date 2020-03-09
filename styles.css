@@ -1,0 +1,88 @@
+body {
+  /*https://www.w3schools.com/css/css_rwd_images.asp*/
+  background-image: url(https://images5.alphacoders.com/443/443566.jpg);
+  background-size: cover;
+  background-repeat: no-repeat;
+  /*animation-name: example;
+  animation-duration: 20s;
+  animation-iteration-count: infinite;*/
+  height: 100%;
+  font-family: cursive;
+}
+
+@keyframes example {
+  0% {
+    background-color: blueviolet;
+  }
+  50% {
+    background-color: yellow;
+  }
+  100% {
+    background-color: blueviolet;
+  }
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  margin: auto;
+  margin-top: auto;
+  width: 50%;
+  text-align: center;
+}
+
+header {
+  display: flex;
+  position: fixed;
+  width: 50%;
+  justify-content: center;
+}
+
+.login-modal {
+  margin-top: 30%;
+  width: 50%;
+  margin: 30% auto;
+  justify-content: space-evenly;
+  background-color: rgb(0, 140, 69, 0.5);
+}
+
+.login-modal-row {
+  display: flex;
+  width: inherit;
+  margin: 0 auto;
+  justify-content: center;
+  min-width: 70%;
+  flex-wrap: wrap;
+  margin: 5% auto;
+  border-radius: 50%;
+}
+
+.login-modal-row input {
+  border-color: rgb(0, 140, 69, 0.5);
+  max-width: 100%;
+  margin: 0 auto;
+  box-sizing: border-box;
+}
+
+.login-modal-row input:focus {
+  border-color: tomato;
+}
+
+#login-btn {
+  margin: 0 auto;
+  width: 50%;
+  opacity: 0.8;
+  border-radius: 50%;
+  border: none;
+}
+
+#login-btn:hover {
+  opacity: 1;
+  background-color: tomato;
+}
+
+/*@media only screen and (max-width: 1400px) {
+  .login-modal-row {
+    flex-direction: column;
+  }
+}*/

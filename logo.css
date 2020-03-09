@@ -1,0 +1,40 @@
+.logo {
+  opacity: 0.5;
+  background-color: yellow;
+  border-radius: 100%;
+  width: 50px;
+  height: 50px;
+  position: absolute;
+  margin-left: 90%;
+}
+
+.logo:hover {
+  opacity: 1;
+}
+
+.left {
+  margin: 10% 30%;
+  height: 80%;
+  width: 20%;
+  background-color: blueviolet;
+  position: absolute;
+}
+
+.right {
+  margin: 10% 50%;
+  height: 80%;
+  width: 30%;
+  position: absolute;
+}
+
+.right-logo-part {
+  height: 50%;
+  width: 70%;
+  background-color: blueviolet;
+  border-radius: 0% 100% 100% 0%;
+  position: absolute;
+}
+
+#right-logo-lower-part {
+  top: 50%;
+}
