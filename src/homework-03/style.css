@@ -1,4 +1,80 @@
+body {
+  background-color: lawngreen;
+}
+
+#poke_pic {
+  width: 60%;
+  height: 10%;
+  margin: auto;
+}
+
+main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
 #lists {
   display: flex;
-  justify-content: space-between;
+  flex-direction: column;
+  justify-content: center;
 }
+
+#lists div {
+  width: 80%;
+  margin: auto;
+}
+
+#lists ul {
+  list-style-type: none;
+}
+
+#active_pokemons,
+#deleted_pokemons {
+  columns: 2;
+}
+
+.pokemon_li {
+  background-color: rgb(128, 128, 128, 0.6);
+  display: flex;
+  justify-content: space-between;
+  width: 30%;
+  padding: 5px;
+  margin: auto;
+  flex-wrap: wrap;
+  break-inside: avoid;
+}
+
+/*.pokemon_li:hover {
+  font-weight: bold;
+}*/
+
+#lists button {
+  border: none;
+}
+
+#show_deleted_button {
+  margin: auto;
+}
+
+#pagination_div {
+  max-width: fit-content;
+}
+
+.no_display {
+  display: none;
+}
+
+.hidden {
+  visibility: hidden;
+}
+
+.extra_info {
+  width: 100%;
+}
+
+.p_selected {
+  background-color: tomato;
+}
+
+/*TODO media query da se sve prikaže u jednoj listi*/
