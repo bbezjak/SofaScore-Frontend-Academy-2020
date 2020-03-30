@@ -31,7 +31,7 @@ class List extends React.Component {
       .then(
         result => {
           //simulacija za čekanje
-          setTimeout(() => this.setState({ teams: result.data }), 1000);
+          setTimeout(() => this.setState({ teams: result.data }), 5000);
         },
         error => {
           console.log(error);
