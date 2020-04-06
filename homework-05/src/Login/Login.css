@@ -1,0 +1,57 @@
+#login-modal {
+  border-radius: 15px;
+  margin: auto;
+}
+
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+#error-div {
+  background-color: rgba(255, 99, 71, 0.5);
+  border-radius: 15px;
+  margin: auto;
+  word-wrap: break-word;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.blue-item {
+  background-color: rgba(25, 25, 112, 0.5);
+}
+
+button {
+  border: none;
+  min-width: 180px;
+  max-width: 300px;
+}
+
+input {
+  border: none;
+}
+
+h1 {
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+.no-display {
+  visibility: hidden;
+}
+
+button {
+  background-color: tomato;
+  color: white;
+  margin: 0 60px;
+  border-radius: 15px;
+}
+
+label {
+  text-align: left;
+}
