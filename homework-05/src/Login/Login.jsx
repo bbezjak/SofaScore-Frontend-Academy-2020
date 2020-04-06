@@ -4,17 +4,11 @@ import Input from "./../Input/Input";
 
 export function Login() {
   const [username, setUsername] = React.useState("");
-  const [usernameError, setUsernameError] = React.useState(
-    "Please provide username"
-  );
+  const [usernameError, setUsernameError] = React.useState(undefined);
   const [password, setPassword] = React.useState("");
-  const [passwordError, setPasswordError] = React.useState(
-    "Please provide password"
-  );
+  const [passwordError, setPasswordError] = React.useState(undefined);
   const [token, setToken] = React.useState(undefined);
-  const [fetchError, setFetchError] = React.useState(
-    "Username or password is invalid, login unnsucessfull"
-  );
+  const [fetchError, setFetchError] = React.useState(undefined);
 
   const fetchData = () => {
     function reset() {

@@ -12,9 +12,11 @@ export function Input(props) {
         placeholder={props.placeholder}
       ></input>
       {props.errorMessage !== undefined ? (
-        <p className="error-mesagge">{props.errorMessage}</p>
+        <span className="error-mesagge">{props.errorMessage}</span>
       ) : (
-        <p> </p>
+        <span className="error-message no-display">
+          "text to keep place in DOM"
+        </span>
       )}
     </>
   );

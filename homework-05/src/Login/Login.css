@@ -1,25 +1,35 @@
-#login-modal {
-  border-radius: 15px;
-  margin: auto;
-}
-
 .flex-container {
   display: flex;
   flex-direction: column;
   justify-content: space-around;
 }
 
+#login-modal {
+  border-radius: 15px;
+  margin: 0 5px;
+  min-width: 310px;
+  max-width: 415px;
+  height: 50vh;
+}
+
 #error-div {
   background-color: rgba(255, 99, 71, 0.5);
   border-radius: 15px;
-  margin: auto;
+  margin: 0 5px;
   word-wrap: break-word;
+  min-width: 310px;
+  max-width: 415px;
+  height: 10vh;
+}
+
+#error-div p {
+  margin: 0 5px;
 }
 
 form {
   display: flex;
   flex-direction: column;
-  justify-content: space-between;
+  justify-content: space-around;
 }
 
 .blue-item {
@@ -28,8 +38,9 @@ form {
 
 button {
   border: none;
-  min-width: 180px;
-  max-width: 300px;
+  width: 50%;
+  align-self: center;
+  margin-top: 10px;
 }
 
 input {
@@ -41,17 +52,8 @@ h1 {
   align-self: flex-start;
 }
 
-.no-display {
-  visibility: hidden;
-}
-
 button {
   background-color: tomato;
   color: white;
-  margin: 0 60px;
   border-radius: 15px;
-}
-
-label {
-  text-align: left;
 }
