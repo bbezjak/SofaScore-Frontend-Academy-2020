@@ -11,6 +11,7 @@ export function Login() {
   const [fetchError, setFetchError] = React.useState(undefined);
 
   const fetchData = () => {
+    //ovo kad se napravi funkcija koja se zove je ostatak neke propale ideje
     function reset() {
       setUsernameError(undefined);
       setPasswordError(undefined);
