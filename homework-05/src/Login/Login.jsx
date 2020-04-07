@@ -22,6 +22,7 @@ export function Login() {
     function submitData() {
       const url = "https://private-leagues-api.herokuapp.com/api/login";
 
+      debugger;
       if (username === "") {
         console.log("Please provide username");
         setUsernameError("Please provide username");
@@ -53,7 +54,7 @@ export function Login() {
             } else if (res.status === 422) {
               console.error("Status is not ok");
               setFetchError(
-                "Username or password is invalid, login unnsucessfull"
+                "Username or password is invalid, login unsuccessful"
               );
             } else {
               console.error("Status is not ok");
