@@ -1,0 +1,11 @@
+Pitanja:
+
+1.) Kako je najbolje organizirati redux strukturu?
+    https://redux.js.org/faq/code-structure#code-structure
+
+2.) Koliko je vremena potrebno posvetiti za učenje konfiguracije? Koliko
+    potrošiš vremena na čitanje docsa?
+
+3.) Kako pamtiš sve stvari koje su potrebne za projekte?
+
+4.) Perzistiranje funkcija u LocalStorage? Da, ne, možda i zašto?

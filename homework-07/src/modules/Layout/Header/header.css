@@ -1,0 +1,17 @@
+header {
+  display: flex;
+  justify-content: space-between;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  background-color: rgb(25, 25, 112);
+  height: 55px;
+}
+
+.header-children {
+  margin: auto 20px;
+}
+
+#modal_toggler {
+  width: 150px;
+}
