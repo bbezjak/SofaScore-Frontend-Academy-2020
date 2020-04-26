@@ -2,6 +2,8 @@ import React from "react";
 import "./Input.css";
 
 export function Input(props) {
+  const error = props.displayError ? "" : "no-display";
+
   return (
     <>
       <label>{props.label}</label>
@@ -11,15 +13,8 @@ export function Input(props) {
         onChange={(e) => props.onChange(e)}
         placeholder={props.placeholder}
       ></input>
-      {props.errorMessage !== undefined ? (
-        <span className="error-mesagge">{props.errorMessage}</span>
-      ) : (
-        <span className="error-message no-display">
-          "text to keep place in DOM"
-        </span>
-      )}
+      <span className={`error-mesagge ${error}`}>{props.errorMessage}</span>
     </>
   );
 }
-
 export default React.memo(Input);
