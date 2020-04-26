@@ -1,0 +1,45 @@
+.App {
+  text-align: center;
+}
+
+.App-logo {
+  height: 40vmin;
+  pointer-events: none;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .App-logo {
+    animation: App-logo-spin infinite 20s linear;
+  }
+}
+
+.App-header {
+  /*background-image: url(https://images4.alphacoders.com/284/thumb-1920-284804.jpg);*/
+  /*background-image: url(https://wallpaperaccess.com/full/552032.jpg);*/
+  background-image: url(https://observatoriocomunicacionviolencia.org/l/2019/12/wallpaper-kobe-bryant-basketball-nba-lakers-7-los-angeles-cool-wallpapers-schedule-tonight-all-star-game-brooklyn-nets-ichiro-suzuki-jaelen-strong-ben-simmons-and-joel-embiid-live-black-box.jpg);
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  font-size: calc(10px + 2vmin);
+  color: white;
+}
+.App-link {
+  color: #61dafb;
+}
+@keyframes App-logo-spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.no-display {
+  visibility: hidden;
+}

@@ -1,0 +1,65 @@
+.flex-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+  padding: 5px;
+}
+
+#login-modal {
+  border-radius: 15px;
+  margin: 0 5px;
+  min-width: 310px;
+  max-width: 415px;
+  height: 50vh;
+}
+
+#error-div {
+  background-color: rgba(255, 99, 71, 0.5);
+  border-radius: 15px;
+  margin: 0 5px;
+  word-wrap: break-word;
+  min-width: 310px;
+  max-width: 415px;
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+#error-div p {
+  margin: 0 5px;
+}
+
+form {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
+
+.blue-item {
+  background-color: rgba(25, 25, 112, 0.5);
+}
+
+button {
+  border: none;
+  width: 50%;
+  align-self: center;
+  margin-top: 10px;
+}
+
+input {
+  border: none;
+}
+
+h1 {
+  margin-top: 0;
+  align-self: flex-start;
+}
+
+button {
+  background-color: tomato;
+  color: white;
+  border-radius: 15px;
+  height: 30px;
+  margin-bottom: 10px;
+}

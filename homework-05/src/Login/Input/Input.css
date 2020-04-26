@@ -1,0 +1,21 @@
+.login-element {
+  border-radius: 15px;
+  padding: 0 15px;
+  margin: 0 10px;
+  height: 30px;
+}
+
+label {
+  margin-left: 10px;
+  text-align: left;
+}
+
+.error-mesagge {
+  color: tomato;
+  text-align: start;
+  margin-left: 20px;
+}
+
+.font-size {
+  font-size: min(3vw, 30px);
+}
