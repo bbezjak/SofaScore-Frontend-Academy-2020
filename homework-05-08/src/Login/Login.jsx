@@ -1,16 +1,35 @@
-import React from "react";
+import React, { useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Link, Redirect } from "react-router-dom";
+
 import "./Login.css";
+
 import Input from "./Input/Input";
 
-import { fetchData } from "./../fetch/fetch";
+import { fetchData } from "../Components/fetch/fetch";
+import {
+  removeUserToken,
+  removeUserTokenRememberMe,
+  setUserToken,
+  setUserTokenRememberMe,
+} from "./redux";
 
 export function Login() {
   const [username, setUsername] = React.useState("");
   const [usernameError, setUsernameError] = React.useState(false);
   const [password, setPassword] = React.useState("");
   const [passwordError, setPasswordError] = React.useState(false);
-  const [token, setToken] = React.useState(undefined);
   const [fetchError, setFetchError] = React.useState(false);
+
+  const dispatch = useDispatch();
+  const [rememberMe, setRememberMe] = React.useState(false);
+  const [redirect, setRedirect] = React.useState(false);
+
+  //initialization
+  useEffect(() => {
+    dispatch(removeUserToken());
+    dispatch(removeUserTokenRememberMe());
+  }, [dispatch]);
 
   function isFormValid() {
     setUsernameError(false);
@@ -85,17 +104,21 @@ export function Login() {
 
     await fetchData(url, method, headers, body)
       .then((res) => {
-        debugger;
         if (res.status === 200) {
           console.log("Status is ok");
           res.json().then((json) => {
+            debugger;
             console.log(json);
-            setToken(json.token);
+            dispatch(setUserToken(json.token));
+            if (rememberMe) {
+              dispatch(setUserTokenRememberMe(json.token));
+            }
+            setRedirect(true);
           });
         } else if (res.status === 422) {
           setFetchError("Username or password is invalid, login unsuccessful");
         } else {
-          setFetchError("Error " + res.status);
+          setFetchError("Status " + res.status);
         }
       })
       .catch((err) => {
@@ -103,33 +126,50 @@ export function Login() {
       });
   };
 
+  function handleChecked() {
+    setRememberMe(!rememberMe);
+  }
+
   return (
-    <div className="flex-container">
-      <div id="login-modal" className="flex-container blue-item">
-        <h1>Login</h1>
-        <form onSubmit={fetchUser}>
-          <Input
-            label="Username"
-            type="text"
-            onChange={(e) => setUsername(e.target.value)}
-            placeholder="Your Username"
-            displayError={usernameError}
-            errorMessage="Please provide username"
-          />
-          <Input
-            label="Password"
-            type="password"
-            onChange={(e) => setPassword(e.target.value)}
-            placeholder="Your Password"
-            displayError={passwordError}
-            errorMessage="Please provide password"
-          />
-          <button type="submit">Login</button>
-        </form>
+    <>
+      {redirect && <Redirect to="/" />}
+      <div className="flex-container">
+        <div id="login-modal" className="flex-container blue-item">
+          <h1>Login</h1>
+          <form onSubmit={fetchUser}>
+            <Input
+              label="Username"
+              type="text"
+              onChange={(e) => setUsername(e.target.value)}
+              placeholder="Your Username"
+              displayError={usernameError}
+              errorMessage="Please provide username"
+            />
+            <Input
+              label="Password"
+              type="password"
+              onChange={(e) => setPassword(e.target.value)}
+              placeholder="Your Password"
+              displayError={passwordError}
+              errorMessage="Please provide password"
+            />
+            <div className="flex-container">
+              <button type="submit">Login</button>
+              <div>
+                <input
+                  type="checkbox"
+                  //checked={this.state.active}
+                  onClick={handleChecked}
+                />
+                <label>Remember me</label>
+              </div>
+            </div>
+          </form>
+        </div>
+        <div id="error-div" className={!fetchError ? "no-display" : ""}>
+          <p>{fetchError}</p>
+        </div>
       </div>
-      <div id="error-div" className={!fetchError ? "no-display" : ""}>
-        <p>{fetchError}</p>
-      </div>
-    </div>
+    </>
   );
 }
