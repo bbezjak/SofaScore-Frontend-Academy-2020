@@ -1,18 +1,15 @@
 import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { Link, Redirect } from "react-router-dom";
-
-import "./Login.css";
+import { Redirect } from "react-router-dom";
 
 import Input from "./Input/Input";
-
 import { fetchData } from "../Components/fetch/fetch";
-import {
-  removeUserToken,
-  removeUserTokenRememberMe,
-  setUserToken,
-  setUserTokenRememberMe,
-} from "./redux";
+import { setUserToken, removeUserToken, toggleRememberMe } from "./redux";
+
+import { setUserPresent } from "./../state/common";
+import { setUserAbsent } from "./../state/common";
+
+import "./Login.css";
 
 export function Login() {
   const [username, setUsername] = React.useState("");
@@ -22,13 +19,11 @@ export function Login() {
   const [fetchError, setFetchError] = React.useState(false);
 
   const dispatch = useDispatch();
-  const [rememberMe, setRememberMe] = React.useState(false);
-  const [redirect, setRedirect] = React.useState(false);
+  const { rememberMe, userPresent } = useSelector((state) => state);
 
-  //initialization
   useEffect(() => {
     dispatch(removeUserToken());
-    dispatch(removeUserTokenRememberMe());
+    dispatch(setUserAbsent());
   }, [dispatch]);
 
   function isFormValid() {
@@ -68,52 +63,12 @@ export function Login() {
       password: password,
     };
 
-    /*fetch(url, {
-      headers: {
-        "Content-Type": "application/json",
-      },
-      method: "post",
-      body: JSON.stringify({
-        username: username,
-        password: password,
-      }),
-    })
-      .then((res) => {
-        debugger;
-        if (res.status === 200) {
-          console.log("Status is ok");
-          res.json().then((json) => {
-            console.log(json);
-            setToken(json.token);
-          });
-        } else if (res.status === 422) {
-          console.error("Status is not ok");
-          setFetchError("Username or password is invalid, login unsuccessful");
-        } else {
-          console.error("Status is not ok");
-          const str = "Error " + res.status;
-          console.log(str);
-          setFetchError("Error " + res.status);
-        }
-      })
-      .catch((err) => {
-        debugger;
-        console.error("Error je " + err);
-        setFetchError("Error during data exchange with server");
-      });*/
-
     await fetchData(url, method, headers, body)
       .then((res) => {
         if (res.status === 200) {
-          console.log("Status is ok");
           res.json().then((json) => {
-            debugger;
-            console.log(json);
             dispatch(setUserToken(json.token));
-            if (rememberMe) {
-              dispatch(setUserTokenRememberMe(json.token));
-            }
-            setRedirect(true);
+            dispatch(setUserPresent());
           });
         } else if (res.status === 422) {
           setFetchError("Username or password is invalid, login unsuccessful");
@@ -127,12 +82,12 @@ export function Login() {
   };
 
   function handleChecked() {
-    setRememberMe(!rememberMe);
+    dispatch(toggleRememberMe());
   }
 
   return (
     <>
-      {redirect && <Redirect to="/" />}
+      {userPresent && <Redirect to="/" />}
       <div className="flex-container">
         <div id="login-modal" className="flex-container blue-item">
           <h1>Login</h1>
@@ -158,8 +113,8 @@ export function Login() {
               <div>
                 <input
                   type="checkbox"
-                  //checked={this.state.active}
-                  onClick={handleChecked}
+                  checked={rememberMe}
+                  onChange={handleChecked}
                 />
                 <label>Remember me</label>
               </div>
