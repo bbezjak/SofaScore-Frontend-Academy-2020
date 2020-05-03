@@ -6,9 +6,9 @@ import storage from "redux-persist/lib/storage";
 import { rootReducer } from "./reducer";
 
 const persistConfig = {
-  key: "login",
+  key: "homework",
   storage,
-  blacklist: ["userPresent"],
+  blacklist: ["user.rememberMe"],
 };
 
 const persistedReducer = persistReducer(persistConfig, rootReducer);

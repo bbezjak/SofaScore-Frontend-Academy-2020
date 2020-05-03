@@ -1,30 +1,23 @@
-import React, { useEffect } from "react";
+import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { Redirect } from "react-router-dom";
 
 import Input from "./Input/Input";
 import { fetchData } from "../Components/fetch/fetch";
-import { setUserToken, removeUserToken, toggleRememberMe } from "./redux";
-
-import { setUserPresent } from "./../state/common";
-import { setUserAbsent } from "./../state/common";
+import { setUserToken, rememberUser } from "../state/user";
 
 import "./Login.css";
 
 export function Login() {
-  const [username, setUsername] = React.useState("");
-  const [usernameError, setUsernameError] = React.useState(false);
-  const [password, setPassword] = React.useState("");
-  const [passwordError, setPasswordError] = React.useState(false);
-  const [fetchError, setFetchError] = React.useState(false);
+  const [username, setUsername] = useState("");
+  const [usernameError, setUsernameError] = useState(false);
+  const [password, setPassword] = useState("");
+  const [passwordError, setPasswordError] = useState(false);
+  const [fetchError, setFetchError] = useState(false);
+  const [rememberMe, setRememberMe] = useState(false);
 
   const dispatch = useDispatch();
-  const { rememberMe, userPresent } = useSelector((state) => state);
-
-  useEffect(() => {
-    dispatch(removeUserToken());
-    dispatch(setUserAbsent());
-  }, [dispatch]);
+  const { user } = useSelector((state) => state);
 
   function isFormValid() {
     setUsernameError(false);
@@ -68,7 +61,9 @@ export function Login() {
         if (res.status === 200) {
           res.json().then((json) => {
             dispatch(setUserToken(json.token));
-            dispatch(setUserPresent());
+            if (rememberMe) {
+              dispatch(rememberUser());
+            }
           });
         } else if (res.status === 422) {
           setFetchError("Username or password is invalid, login unsuccessful");
@@ -82,12 +77,12 @@ export function Login() {
   };
 
   function handleChecked() {
-    dispatch(toggleRememberMe());
+    setRememberMe(!rememberMe);
   }
 
   return (
     <>
-      {userPresent && <Redirect to="/" />}
+      {user.token && <Redirect to="/" />}
       <div className="flex-container">
         <div id="login-modal" className="flex-container blue-item">
           <h1>Login</h1>
