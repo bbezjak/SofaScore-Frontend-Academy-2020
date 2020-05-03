@@ -5,7 +5,7 @@
   height: 30px;
 }
 
-label {
+.input-label {
   margin-left: 10px;
   text-align: left;
 }

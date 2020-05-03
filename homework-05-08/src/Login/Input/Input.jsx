@@ -6,7 +6,7 @@ export function Input(props) {
 
   return (
     <>
-      <label>{props.label}</label>
+      <label className="input-label">{props.label}</label>
       <input
         className="login-element"
         type={props.type}
