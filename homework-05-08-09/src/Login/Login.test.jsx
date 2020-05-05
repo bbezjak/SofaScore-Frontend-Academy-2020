@@ -1,4 +1,6 @@
 import React from "react";
+
+import { BrowserRouter, Switch, Route } from "react-router-dom";
 import { fireEvent, waitForElementToBeRemoved } from "@testing-library/react";
 
 import { Login } from "./Login";
@@ -15,17 +17,29 @@ describe("label tests", () => {
 
   it('calls', async () => {
   
-    const { getByText, getByPlaceholderText, debug } = renderWithRedux(<Login />);
+    const { getByText, getByPlaceholderText, getAllByText } = renderWithRedux(
+    <BrowserRouter>
+      <Switch>
+        <Route path="/">
+          <Login />
+        </Route>
+        <Route path="*">
+          <h1>404 - page not found</h1>
+        </Route>
+      </Switch>
+    </BrowserRouter>);
 
     const username = getByPlaceholderText(/Your Username/i);
     const password = getByPlaceholderText(/Your Password/i);
   
-    fireEvent.change(username, { target: { value: 'testUsername' } })
-    fireEvent.change(password, { target: { value: 'testPassword' } })
+    fireEvent.change(username, { target: { value: 'testUser' } })
+    fireEvent.change(password, { target: { value: 'testUser-password' } })
     fireEvent.click(getByText(/Login/i))
 
-    debug()
+    await waitForElementToBeRemoved(() => getByText(/Login/i))
 
+    expect(getAllByText(/username/i)).toHaveLength(0);
+    expect(getAllByText(/password/i)).toHaveLength(0);
     
   })
 });

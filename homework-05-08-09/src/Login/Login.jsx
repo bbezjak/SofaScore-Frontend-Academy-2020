@@ -42,10 +42,13 @@ export function Login() {
   const fetchUser = async (e) => {
     e.preventDefault();
 
+    console.log("!!!      fetch user      ");
     if (!isFormValid()) {
       return;
     }
 
+
+    console.log("!!!      fetch started      ");
     const url = "https://private-leagues-api.herokuapp.com/api/login";
     const method = "post";
     const headers = {
@@ -56,9 +59,14 @@ export function Login() {
       password: password,
     };
 
+    console.log("!!!     body: "+ JSON.stringify(body) + "      ");
+
     await fetchData(url, method, headers, body)
       .then((res) => {
-        if (res.status === 200) {
+        debugger;
+        console.log("!!!     fetch then block: "+ JSON.stringify(res) + "      ");
+        if (res.status === 200) { 
+          console.log("!!!     fetch status 200      ");
           res.json().then((json) => {
             dispatch(setUserToken(json.token));
             if (rememberMe) {
