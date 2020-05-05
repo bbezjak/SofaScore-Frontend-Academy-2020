@@ -67,9 +67,9 @@ class List extends React.Component {
           <img id="spalding" src={spalding}></img>
         ) : (
           <ul className="teamList">
-            {this.state.teams.map((team, index) => (
+            {this.state.teams.map((team) => (
               <Card
-                key={index}
+                key={team.id}
                 team={team}
                 isFavorite={this.state.favorite === team.abbreviation}
                 redirect={() =>

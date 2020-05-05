@@ -5,7 +5,6 @@ export class Card extends React.Component {
   render() {
     return (
       <li
-        key={this.props.index}
         className={this.props.isFavorite ? "favorite" : ""}
         onClick={() => console.log(this.props.team.abbreviation + " clicked")}
       >

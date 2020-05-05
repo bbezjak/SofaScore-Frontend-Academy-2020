@@ -1,18 +1,12 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import List from "./List/List";
 import TeamDetails from "./TeamDetails/TeamDetails";
 import {
   BrowserRouter as Router,
   Switch,
-  Route,
-  Redirect
+  Route
 } from "react-router-dom";
-
-const redirect = () => {
-  debugger;
-};
 
 function App() {
   return (
@@ -20,11 +14,11 @@ function App() {
       <header className="App-header">
         <Router>
           <Switch>
-            <Route
+            <Route exact
               path="/team"
               render={props => <TeamDetails {...props} />}
             ></Route>
-            <Route path="/">
+            <Route exact path="/">
               <List />
             </Route>
           </Switch>
