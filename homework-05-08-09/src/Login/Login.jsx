@@ -85,7 +85,7 @@ export function Login() {
       {user.token && <Redirect to="/" />}
       <div className="flex-container">
         <div id="login-modal" className="flex-container blue-item">
-          <h1>Login</h1>
+          <h1>Log in</h1>
           <form onSubmit={fetchUser}>
             <Input
               label="Username"
