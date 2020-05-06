@@ -1,48 +1,48 @@
-import React, { useEffect } from "react";
-import { BrowserRouter, Switch, Route } from "react-router-dom";
-import { useSelector, useDispatch } from "react-redux";
+import React, { useEffect } from 'react'
+import { BrowserRouter, Switch, Route } from 'react-router-dom'
+import { useSelector, useDispatch } from 'react-redux'
 
-import "./App.css";
-import { Login } from "./Login/Login";
-import { Home } from "./Home/Home";
-import { ProtectedRoute } from "./Components/ProtectedRoute";
-import { User } from "./User/User";
+import './App.css'
+import { Login } from './Login/Login'
+import { Home } from './Home/Home'
+import { ProtectedRoute } from './Components/ProtectedRoute'
+import { User } from './User/User'
 
-import { fetchData } from "./Components/fetch/fetch";
-import { removeUserToken } from "./state/user";
+import { fetchData } from './Components/fetch/fetch'
+import { removeUserToken } from './state/user'
 
 function App() {
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state);
+  const dispatch = useDispatch()
+  const { user } = useSelector(state => state)
 
   async function validateToken() {
     if (user.token && user.rememberMe !== undefined) {
-      const url = "https://private-leagues-api.herokuapp.com/api/check-token";
-      const method = "post";
+      const url = 'https://private-leagues-api.herokuapp.com/api/check-token'
+      const method = 'post'
       const headers = {
-        "Content-Type": "application/json",
-      };
+        'Content-Type': 'application/json',
+      }
       const body = {
         token: user.token,
-      };
+      }
       try {
-        const res = await fetchData(url, method, headers, body);
+        const res = await fetchData(url, method, headers, body)
         if (res.status !== 204) {
-          dispatch(removeUserToken());
+          dispatch(removeUserToken())
         }
       } catch (err) {
-        console.log(err);
-        dispatch(removeUserToken());
+        console.log(err)
+        dispatch(removeUserToken())
       }
     } else {
-      dispatch(removeUserToken());
+      dispatch(removeUserToken())
     }
   }
 
   useEffect(() => {
-    validateToken();
+    validateToken()
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [dispatch]);
+  }, [dispatch])
 
   return (
     <div className="App">
@@ -65,7 +65,7 @@ function App() {
         </BrowserRouter>
       </main>
     </div>
-  );
+  )
 }
 
-export default App;
+export default App

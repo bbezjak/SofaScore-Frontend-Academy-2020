@@ -1,96 +1,95 @@
-import React, { useState } from "react";
-import { useDispatch, useSelector } from "react-redux";
-import { Redirect } from "react-router-dom";
+import React, { useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+import { Redirect } from 'react-router-dom'
 
-import Input from "./Input/Input";
-import { fetchData } from "../Components/fetch/fetch";
-import { setUserToken, rememberUser } from "../state/user";
+import Input from './Input/Input'
+import { fetchData } from '../Components/fetch/fetch'
+import { setUserToken, rememberUser } from '../state/user'
 
-import "./Login.css";
+import './Login.css'
 
 export function Login() {
-  const [username, setUsername] = useState("");
-  const [usernameError, setUsernameError] = useState(false);
-  const [password, setPassword] = useState("");
-  const [passwordError, setPasswordError] = useState(false);
-  const [fetchError, setFetchError] = useState(false);
-  const [rememberMe, setRememberMe] = useState(false);
+  const [username, setUsername] = useState('')
+  const [usernameError, setUsernameError] = useState(false)
+  const [password, setPassword] = useState('')
+  const [passwordError, setPasswordError] = useState(false)
+  const [fetchError, setFetchError] = useState(false)
+  const [rememberMe, setRememberMe] = useState(false)
 
-  const dispatch = useDispatch();
-  const { user } = useSelector((state) => state);
+  const dispatch = useDispatch()
+  const { user } = useSelector(state => state)
 
   function isFormValid() {
-    setUsernameError(false);
-    setPasswordError(false);
-    setFetchError(false);
+    setUsernameError(false)
+    setPasswordError(false)
+    setFetchError(false)
 
-    let isFormValid = true;
+    let isFormValid = true
 
-    if (username === "") {
-      setUsernameError(true);
-      isFormValid = false;
+    if (username === '') {
+      setUsernameError(true)
+      isFormValid = false
     }
 
-    if (password === "") {
-      setPasswordError(true);
-      isFormValid = false;
+    if (password === '') {
+      setPasswordError(true)
+      isFormValid = false
     }
 
-    return isFormValid;
+    return isFormValid
   }
 
-  const fetchUser = async (e) => {
-    e.preventDefault();
+  const fetchUser = e => {
+    e.preventDefault()
 
-    console.log("!!!      fetch user      ");
     if (!isFormValid()) {
-      return;
+      return
     }
 
-
-    console.log("!!!      fetch started      ");
-    const url = "https://private-leagues-api.herokuapp.com/api/login";
-    const method = "post";
+    const url = 'https://private-leagues-api.herokuapp.com/api/login'
+    const method = 'post'
     const headers = {
-      "Content-Type": "application/json",
-    };
+      'Content-Type': 'application/json',
+    }
     const body = {
       username: username,
       password: password,
-    };
+    }
 
-    console.log("!!!     body: "+ JSON.stringify(body) + "      ");
-
-    await fetchData(url, method, headers, body)
-      .then((res) => {
-        debugger;
-        console.log("!!!     fetch then block: "+ JSON.stringify(res) + "      ");
-        if (res.status === 200) { 
-          console.log("!!!     fetch status 200      ");
-          res.json().then((json) => {
-            dispatch(setUserToken(json.token));
+    fetchData(url, method, headers, body)
+      .then(res => {
+        if (res.status === 200) {
+          res.json().then(json => {
+        
+            console.log('fetch successful')
+        
+            dispatch(setUserToken(json.token))
+        
             if (rememberMe) {
-              dispatch(rememberUser());
+              dispatch(rememberUser())
             }
-          });
+          })
         } else if (res.status === 422) {
-          setFetchError("Username or password is invalid, login unsuccessful");
+          setFetchError('Username or password is invalid, login unsuccessful')
         } else {
-          setFetchError("Status " + res.status);
+          setFetchError('Status ' + res.status)
         }
       })
-      .catch((err) => {
-        setFetchError("Error during data exchange with server " + err);
-      });
-  };
+      .catch(err => {
+        setFetchError('Error during data exchange with server ' + err)
+      })
+  }
 
   function handleChecked() {
-    setRememberMe(!rememberMe);
+    setRememberMe(!rememberMe)
   }
+
+  console.log({user});
+  
 
   return (
     <>
-      {user.token && <Redirect to="/" />}
+      {user.token && <Redirect to="/magic" />}
       <div className="flex-container">
         <div id="login-modal" className="flex-container blue-item">
           <h1>Log in</h1>
@@ -98,7 +97,7 @@ export function Login() {
             <Input
               label="Username"
               type="text"
-              onChange={(e) => setUsername(e.target.value)}
+              onChange={e => setUsername(e.target.value)}
               placeholder="Your Username"
               displayError={usernameError}
               errorMessage="Please provide username"
@@ -106,7 +105,7 @@ export function Login() {
             <Input
               label="Password"
               type="password"
-              onChange={(e) => setPassword(e.target.value)}
+              onChange={e => setPassword(e.target.value)}
               placeholder="Your Password"
               displayError={passwordError}
               errorMessage="Please provide password"
@@ -114,20 +113,16 @@ export function Login() {
             <div className="flex-container">
               <button type="submit">Login</button>
               <div>
-                <input
-                  type="checkbox"
-                  checked={rememberMe}
-                  onChange={handleChecked}
-                />
+                <input type="checkbox" checked={rememberMe} onChange={handleChecked} />
                 <label>Remember me</label>
               </div>
             </div>
           </form>
         </div>
-        <div id="error-div" className={!fetchError ? "no-display" : ""}>
+        <div id="error-div" className={!fetchError ? 'no-display' : ''}>
           <p>{fetchError}</p>
         </div>
       </div>
     </>
-  );
+  )
 }
