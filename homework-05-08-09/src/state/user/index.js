@@ -6,4 +6,4 @@ export {
   setUserToken,
   removeUserToken,
 } from "./userActions";
-export { userReducer } from "./userReducer";
+export { userReducer } from './userReducer'
