@@ -1,0 +1,45 @@
+.car {
+  max-width: 300px;
+  min-width: 310px;
+  background-color: rgb(119, 136, 153);
+  margin: 10px 5px;
+  border-radius: 15px;
+  height: 400px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.car img {
+  width: 100%;
+  height: 50%;
+  border-radius: 15px 15px 0px 0px;
+}
+
+.car button {
+  border: none;
+  outline: none;
+  background-color: rgb(25, 25, 112);
+  color: rgb(255, 255, 255);
+}
+
+.car button:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(25, 25, 112);
+}
+
+/*Kad skužim zaš mi useState zagorčava život*/
+.reserve_free_old {
+  width: 70%;
+  border-radius: 0 0 0 15px;
+}
+
+.reserve_free {
+  width: 100%;
+  border-radius: 0 0 15px 15px;
+}
+
+.edit {
+  width: 30%;
+  border-radius: 0 0 15px 0;
+}

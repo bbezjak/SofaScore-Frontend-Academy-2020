@@ -1,0 +1,14 @@
+.header_button {
+  height: 100%;
+  margin: 0;
+  border: 0;
+  background-color: rgb(25, 25, 112);
+  color: rgb(255, 255, 255);
+  padding: 0 6px;
+  outline: none;
+}
+
+.header_button:hover {
+  background-color: rgb(255, 255, 255);
+  color: rgb(25, 25, 112);
+}

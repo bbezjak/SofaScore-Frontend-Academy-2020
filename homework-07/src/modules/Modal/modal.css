@@ -1,0 +1,15 @@
+.reserved_modal {
+  position: fixed;
+  top: 50px;
+  right: 0;
+  width: 250px;
+  background-color: rgb(255, 99, 71);
+  z-index: 10;
+  border-radius: 0 0 0 15px;
+  overflow-y: auto;
+  max-height: calc(100% - 70px);
+}
+
+#nothing_selected_span {
+  padding: 0 2px;
+}
