@@ -1,0 +1,46 @@
+#accordion {
+  top: 0;
+  display: flex;
+  flex-direction: column;
+  border-radius: 5px;
+  width: 50%;
+  margin: auto;
+  max-width: 500px;
+  border: 1px solid tomato;
+  padding: 5px;
+}
+
+#accordion button {
+  width: 50%;
+  margin: 0 auto;
+  max-width: 100px;
+}
+
+#content_elem {
+  display: flex;
+  flex-direction: column;
+  transition: height 2s;
+  justify-content: flex-end;
+}
+
+#content_elem span {
+  justify-self: center;
+}
+
+.red-orange.accordion {
+  background-color: tomato;
+}
+
+.purple-gold.accordion {
+  background-color: purple;
+  color: gold;
+}
+
+.red-orange.content {
+  background-color: orange;
+}
+
+.purple-gold.content {
+  background-color: gold;
+  color: purple;
+}

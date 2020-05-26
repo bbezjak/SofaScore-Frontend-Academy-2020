@@ -1,0 +1,15 @@
+#modal_child {
+  border: 1px solid tomato;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+#modal_child h1 {
+  text-align: center;
+}
+
+#modal_child button {
+  width: 50%;
+  max-width: 200px;
+}
