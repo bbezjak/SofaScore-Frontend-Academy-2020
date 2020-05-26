@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <title>Homework 3 - Pokemons</title>
+    <link rel="stylesheet" type="text/css" href="style.css">
+    <script src="operations.js"></script>
+</head>
+
+<body>
+    <main>
+        <img id="poke_pic" src="https://pluspng.com/img-png/pokemon-logo-png-pokemon-logo-png-2000.png"
+            alt="Pokemon list">
+        <div id="lists">
+            <div id="pagination_div">
+                <button id="p1" class="no_display">Fetch Pokemons</button>
+                <button id="p2" class="no_display">Fetch Pokemons</button>
+                <button id="p3" onclick="fetchPokemons(0)">Fetch Pokemons</button>
+                <button id="p4" class="no_display">Fetch Pokemons</button>
+                <button id="p5" class="no_display">Fetch Pokemons</button>
+            </div>
+            <div>
+                <ul id="active_pokemons">
+                </ul>
+            </div>
+            <button id="show_deleted_button"
+                onclick="toggleSeeDeletedList('deleted_pokemons', 'no_display'); toggleSeeDeletedList('show_deleted_button', 'p_selected') ">
+                Show deleted pokemons
+            </button>
+            <div>
+                <ul id="deleted_pokemons" class="no_display"></ul>
+            </div>
+        </div>
+    </main>
+</body>
+
+</html>
